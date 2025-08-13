@@ -92,6 +92,17 @@ class Post extends Model
 }
 ```
 
+Alternatively, if you would like to use a different `$uuidVersion` on all of your models, then you can set the configuration setting to one of the versions outlined above.   If a different `$uuidVersion` is specified on a model then this will override the global setting.  Remove the ```public function uuidVersion(): string``` function from your model if it is set to take the global default.
+
+```php
+return [
+    /**
+     * The default uuid version used to generate UUID value.
+     */
+    'uuid_version' => 'uuid4',
+];
+```
+
 Whilst not recommended, if you _do_ choose to use a UUID as your primary model key (`id`), be sure to configure your model for this setup correctly. Not updating these properties will lead to Laravel attempting to convert your `id` column to an integer, which will be cast to `0`. When used in combination with the `EfficientUuid` cast, this casting will result in a `Ramsey\Uuid\Exception\InvalidUuidStringException` being thrown.
 
 ```php
