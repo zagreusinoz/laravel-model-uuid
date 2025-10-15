@@ -92,7 +92,7 @@ trait GeneratesUuid
         return call_user_func([Uuid::class, $this->resolveUuidVersion()]);
     }
 
-    public function uuidVersion(): string | null
+    public function uuidVersion(): ?string
     {
         return null;
     }
