@@ -85,14 +85,15 @@ class Post extends Model
 {
     use GeneratesUuid;
 
-    public function uuidVersion(): string
+    public function uuidVersion(): ?string
     {
         return 'uuid5';
     }
 }
 ```
 
-Alternatively, if you would like to use a different `$uuidVersion` on all of your models, then you can set the configuration setting to one of the versions outlined above.   If a different `$uuidVersion` is specified on a model then this will override the global setting.  Remove the ```public function uuidVersion(): string``` function from your model if it is set to take the global default.
+Alternatively, if you would like to use a consistent `$uuidVersion` on all of your models, you may set the `uuid_version` in your `config/model-uuid.php`.
+A non-empty value returned from the model's `uuidVersion(): ?string` method will take priority over the config version.
 
 ```php
 return [
